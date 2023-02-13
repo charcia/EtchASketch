@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head lang="eng">
+        <meta charset="utf-8">
+        <link rel=stylesheet href=EtchASketch.css>
+    </head>
+
+    <body>
+        <div id="grid"></div>
+    </body>
+
+    <script>
+        function addRow(){
+            var numRow=1;
+            var numColumn=1;
+            for (let n=0;n<16;n++){
+                const newRow=document.createElement('div');
+                var rowName='row'+numRow;
+                newRow.id=rowName;
+                numRow+=1;
+
+                const contentRow=document.createTextNode(rowName);
+
+                newRow.appendChild(contentRow);
+
+                const currentDiv=document.getElementById('grid');
+                document.body.insertBefore(newRow,currentDiv);
+
+                /*Add up of column*/
+
+                for (i=0;i<16;i++){
+                    const newColumn=document.createElement('div');
+                    newColumn.className='column';
+
+                    const contentColumn=document.createTextNode(numColumn);
+                    newColumn.appendChild(contentColumn);
+                    numColumn+=1;
+
+
+                    const CurDiv=document.getElementById(rowName);
+                    document.body.insertBefore(newColumn,CurDiv);
+                }
+
+            }
+        }
+        document.body.onload=addRow;
+        
+    </script>
+
+</html>
