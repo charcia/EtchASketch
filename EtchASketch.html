@@ -13,6 +13,7 @@
     </body>
 
     <script>
+        
         function addRow(QtyRow,QtyColumn){
             var numRow=1;
             var numColumn=1;
@@ -63,6 +64,12 @@
             };
             QtyRow=prompt('Enter the number of row: ');
             QtyColumn=prompt('Enter the number of column');
+
+            if (QtyRow>99 || QtyColumn>99){
+                alert('Please enter a number equal to 100 or below');
+                QtyRow=prompt('Enter the number of row: ');
+                QtyColumn=prompt('Enter the number of column');
+            };
             addRow(QtyRow,QtyColumn);
         }
 
