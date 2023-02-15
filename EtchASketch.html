@@ -6,44 +6,68 @@
     </head>
 
     <body>
-        <div id="grid"></div>
+        <button id="NbRowCol">Change grid</button>
+        <div id="grid">
+            <div id="parent"></div>
+        </div>
     </body>
 
     <script>
-        function addRow(){
+        function addRow(QtyRow,QtyColumn){
             var numRow=1;
             var numColumn=1;
-            for (let n=0;n<16;n++){
+            var rowList=[];
+
+            alert(typeof QtyRow);
+            alert(typeof QtyColumn);
+
+            if (typeof QtyRow!='string' && typeof QtyColumn!='string'){
+                var QtyRow=16;
+                var QtyColumn=16;
+            }
+
+            for (let n=0;n<QtyRow;n++){
                 const newRow=document.createElement('div');
                 var rowName='row'+numRow;
+                rowList.push('rowName');
                 newRow.id=rowName;
+                newRow.className='row';
                 numRow+=1;
 
-                const contentRow=document.createTextNode(rowName);
 
-                newRow.appendChild(contentRow);
-
-                const currentDiv=document.getElementById('grid');
-                document.body.insertBefore(newRow,currentDiv);
+                const currentDiv=document.getElementById('parent');
+                currentDiv.appendChild(newRow);
 
                 /*Add up of column*/
 
-                for (i=0;i<16;i++){
+                for (i=0;i<QtyColumn;i++){
                     const newColumn=document.createElement('div');
                     newColumn.className='column';
 
-                    const contentColumn=document.createTextNode(numColumn);
+                    var contentColumn=document.createTextNode(numColumn);
                     newColumn.appendChild(contentColumn);
+
+
+                    var CurDiv=document.getElementById(rowName);
+                    CurDiv.appendChild(newColumn);
                     numColumn+=1;
-
-
-                    const CurDiv=document.getElementById(rowName);
-                    document.body.insertBefore(newColumn,CurDiv);
                 }
 
             }
         }
+
+        function chGrid(){
+            var node= document.getElementById("parent");
+            while (node.firstChild) {
+                node.removeChild(node.firstChild);
+            };
+            QtyRow=prompt('Enter the number of row: ');
+            QtyColumn=prompt('Enter the number of column');
+            addRow(QtyRow,QtyColumn);
+        }
+
         document.body.onload=addRow;
+        document.getElementById('NbRowCol').addEventListener('click',chGrid);
         
     </script>
 
