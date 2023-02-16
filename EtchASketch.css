@@ -20,10 +20,4 @@
     flex-direction: column;
     flex: 1;
     border:1px solid black;
-
-    
-}
-
-.column:hover{
-    background: grey;
 }

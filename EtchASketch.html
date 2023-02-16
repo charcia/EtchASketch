@@ -18,9 +18,7 @@
             var numRow=1;
             var numColumn=1;
             var rowList=[];
-
-            alert(typeof QtyRow);
-            alert(typeof QtyColumn);
+            var colList=[];
 
             if (typeof QtyRow!='string' && typeof QtyColumn!='string'){
                 var QtyRow=16;
@@ -44,6 +42,8 @@
                 for (i=0;i<QtyColumn;i++){
                     const newColumn=document.createElement('div');
                     newColumn.className='column';
+                    newColumn.id='column'+numColumn;
+                    colList.push(newColumn);
 
                     var contentColumn=document.createTextNode(numColumn);
                     newColumn.appendChild(contentColumn);
@@ -71,11 +71,20 @@
                 QtyColumn=prompt('Enter the number of column');
             };
             addRow(QtyRow,QtyColumn);
-        }
+        };
+
+        function trail(){
+            var x = event.clientX;
+            var y = event.clientY;
+            var element=document.elementFromPoint(x,y);
+            if (element.className=='column'){
+                element.style.backgroundColor='grey';   
+            };
+        };
 
         document.body.onload=addRow;
         document.getElementById('NbRowCol').addEventListener('click',chGrid);
-        
+        document.getElementById('grid').addEventListener('mouseover',trail);
     </script>
 
 </html>
